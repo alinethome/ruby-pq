@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'heap'
+require_relative './test_helper'
 
 class TestHeap < MiniTest::Test
   ONE_EL_ARR = [7]
@@ -24,4 +25,27 @@ class TestHeap < MiniTest::Test
   def test_that_initialize_takes_in_a_sorting_block
     Heap.new() { |a, b| b <=> a }
   end
+
+  def test_that_initialize_given_an_array_makes_a_heap
+    heap = Heap.new(ARR) 
+
+    assert(is_heap?(heap.heap))
+  end
+
+  def test_that_insert_inserts_the_element_into_the_heap
+    heap = Heap.new(ARR)
+    new_ele = 3
+    heap.insert(new_ele)
+
+    assert_includes(heap.heap, new_ele)
+  end
+
+  def test_that_insert_maintains_the_heap_property
+    heap = Heap.new(ARR)
+    new_ele = 3 
+    heap.insert(new_ele)
+
+    assert(is_heap?(heap.heap))
+  end
 end
+
