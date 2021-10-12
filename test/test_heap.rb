@@ -32,6 +32,13 @@ class TestHeap < MiniTest::Test
     assert(is_heap?(heap.heap))
   end
 
+  def test_that_initialize_respects_custom_ordering
+    ordering = Proc.new { |a, b| b <=> a }
+    heap = Heap.new(ARR, &ordering)
+
+    assert(is_heap?(heap.heap, &ordering))
+  end
+
   def test_that_insert_inserts_the_element_into_the_heap
     heap = Heap.new(ARR)
     new_ele = 3
@@ -46,6 +53,15 @@ class TestHeap < MiniTest::Test
     heap.insert(new_ele)
 
     assert(is_heap?(heap.heap))
+  end
+
+  def test_that_insert_respects_custom_ordering
+    ordering = Proc.new { |a, b| b <=> a }
+    heap = Heap.new(ARR, &ordering)
+    new_ele = 3 
+    heap.insert(new_ele)
+
+    assert(is_heap?(heap.heap, &ordering))
   end
 end
 
