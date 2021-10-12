@@ -63,5 +63,25 @@ class TestHeap < MiniTest::Test
 
     assert(is_heap?(heap.heap, &ordering))
   end
+
+  def test_that_peek_returns_nil_on_an_empty_heap
+    heap = Heap.new
+    
+    assert_nil(heap.peek)
+  end
+
+  def test_that_peek_returns_the_min_on_a_default_heap
+    heap = Heap.new(ARR)
+
+    assert_equal(ARR.min, heap.peek)
+  end
+
+  def test_that_peek_returns_the_min_according_to_custom_ordering_if_given
+    ordering = Proc.new { |a, b| b <=> a }
+    heap = Heap.new(ARR, &ordering)
+    max = ARR.min(&ordering)
+
+    assert_equal(max, heap.peek)
+  end
 end
 

@@ -8,6 +8,10 @@ class Heap
     heapify(elements)
   end
 
+  def peek
+    heap[1]
+  end
+
   def insert(ele)
     heap << ele
 
