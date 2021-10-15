@@ -83,5 +83,49 @@ class TestHeap < MiniTest::Test
 
     assert_equal(max, heap.peek)
   end
+
+  def test_that_pop_return_nil_if_empty
+    heap = Heap.new
+
+    assert_nil(heap.pop)
+  end
+
+  def test_that_pop_does_not_modify_heap_if_empty
+    heap = Heap.new
+    heap_array = heap.heap
+    heap.pop
+
+    assert_equal(heap_array, heap.heap)
+  end
+
+  def test_that_pop_returns_the_min
+    heap = Heap.new(ARR)
+    min = ARR.min
+
+    assert_equal(min, heap.pop)
+  end
+
+  def test_that_pop_removes_the_min_from_the_heap
+    heap = Heap.new(ARR.uniq)
+    min = ARR.uniq
+    heap.pop
+
+    refute_includes(heap.heap, min)
+  end
+
+  def test_that_pop_maintains_the_heap_property
+    heap = Heap.new(ARR)
+    heap.pop
+
+    assert(is_heap?(heap.heap))
+  end
+
+  def test_that_pop_respects_a_custom_ordering
+    ordering = Proc.new { |a, b| b <=> a }
+    heap = Heap.new(ARR, &ordering)
+    max = ARR.max
+
+    assert_equal(max, heap.pop)
+  end
 end
 
