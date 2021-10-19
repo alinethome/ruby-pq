@@ -3,9 +3,9 @@ class Heap
 
   def initialize(elements = [], &order)
     @order = order || Proc.new { |a, b| a <=> b } 
-    @heap = [nil]
+    @heap = [nil] + elements
 
-    heapify(elements)
+    heapify
   end
 
   def peek
@@ -31,9 +31,9 @@ class Heap
 
   private
 
-  def heapify(elements)
-    elements.each do |ele|
-      insert(ele)
+  def heapify
+    (heap.length - 1).downto(0).each do |index|
+      sift_down(index)
     end
   end
 
