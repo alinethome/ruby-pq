@@ -14,6 +14,10 @@ class Ruby_PQ
     length == 0
   end
 
+  def push(*elements)
+    elements.each { |ele| @queue.insert(ele) }
+  end
+
   private
 
   attr_reader :queue
