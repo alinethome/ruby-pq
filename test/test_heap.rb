@@ -127,5 +127,11 @@ class TestHeap < MiniTest::Test
 
     assert_equal(max, heap.pop)
   end
+
+  def test_that_size_returns_the_number_of_elements_in_the_heap
+    assert_equal(0, Heap.new.size)
+    assert_equal(1, Heap.new(ONE_EL_ARR).size)
+    assert_equal(ARR.length, Heap.new(ARR).size)
+  end
 end
 

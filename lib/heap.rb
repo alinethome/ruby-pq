@@ -29,6 +29,10 @@ class Heap
     top
   end
 
+  def size
+    heap.length - 1
+  end
+
   private
 
   def heapify
