@@ -24,4 +24,10 @@ class TestRubyPQ < MiniTest::Test
   def test_that_initialize_takes_in_an_order_block
     Ruby_PQ.new() { |a, b| b <=> a }
   end
+
+  def test_that_the_length_getter_returns_the_correct_length
+    assert_equal(0, Ruby_PQ.new().length)
+    assert_equal(1, Ruby_PQ.new(ONE_EL_ARR).length)
+    assert_equal(ARR.length, Ruby_PQ.new(ARR).length)
+  end
 end

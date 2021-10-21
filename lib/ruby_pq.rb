@@ -5,4 +5,12 @@ class Ruby_PQ
     order ||= Proc.new { |a, b| a <=> b }
     @queue = Heap.new(elements, &order)
   end
+
+  def length
+    @queue.size
+  end
+
+  private
+
+  attr_reader :queue
 end
