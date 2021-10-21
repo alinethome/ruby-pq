@@ -73,4 +73,27 @@ class TestRubyPQ < MiniTest::Test
     pqueue.peek
     assert_equal(original_length, pqueue.length)
   end
+
+  def test_that_pop_returns_the_highest_priority_element
+    pqueue = RubyPQ.new(ARR)
+    assert_equal(ARR.min, pqueue.pop) # because the default ordering is min
+  end
+
+  def test_that_pop_returns_nil_for_an_empty_queue
+    pqueue = RubyPQ.new()
+    assert_nil(pqueue.pop)
+  end
+
+  def test_that_pop_respects_custom_ordering
+    max_queue = RubyPQ.new(ARR) { |a, b| b <=> a }
+    assert_equal(ARR.max, max_queue.pop)
+  end
+
+  def test_that_pop_removes_the_element
+    pqueue = RubyPQ.new(ARR)
+    original_length = pqueue.length
+
+    pqueue.pop
+    assert_equal(original_length - 1, pqueue.length)
+  end
 end

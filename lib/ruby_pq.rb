@@ -22,6 +22,10 @@ class RubyPQ
     queue.peek
   end
 
+  def pop
+    queue.pop
+  end
+
   private
 
   attr_reader :queue
