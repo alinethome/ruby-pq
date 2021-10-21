@@ -10,6 +10,10 @@ class Ruby_PQ
     @queue.size
   end
 
+  def empty?
+    length == 0
+  end
+
   private
 
   attr_reader :queue

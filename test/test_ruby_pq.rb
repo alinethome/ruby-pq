@@ -30,4 +30,17 @@ class TestRubyPQ < MiniTest::Test
     assert_equal(1, Ruby_PQ.new(ONE_EL_ARR).length)
     assert_equal(ARR.length, Ruby_PQ.new(ARR).length)
   end
+
+  def test_that_empty_returns_true_for_empty_queues
+    pqueue = Ruby_PQ.new
+    assert(pqueue.empty?)
+  end
+
+  def test_that_empty_returns_false_for_queues_with_one_element_or_more
+    one_el_pqueue = Ruby_PQ.new(ONE_EL_ARR)
+    many_el_pqueue = Ruby_PQ.new(ARR)
+
+    refute(one_el_pqueue.empty?)
+    refute(many_el_pqueue.empty?)
+  end
 end
