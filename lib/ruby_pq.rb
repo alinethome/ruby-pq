@@ -18,6 +18,10 @@ class Ruby_PQ
     elements.each { |ele| @queue.insert(ele) }
   end
 
+  def peek
+    queue.peek
+  end
+
   private
 
   attr_reader :queue

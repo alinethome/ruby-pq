@@ -54,4 +54,23 @@ class TestRubyPQ < MiniTest::Test
     pqueue = Ruby_PQ.new()
     assert_equal(3, pqueue.push(1, 2, 3).length)
   end
+
+  def test_that_peek_returns_the_highest_priority_element
+    pqueue = Ruby_PQ.new(ARR)
+    assert_equal(ARR.min, pqueue.peek) # because the default ordering is min
+  end
+
+  def test_that_peek_respects_custom_ordering
+    pqueue = Ruby_PQ.new(ARR) { |a, b| b <=> a }
+    assert_equal(ARR.max, pqueue.peek)
+  end
+
+  def test_that_peek_doesnt_change_the_size
+    pqueue = Ruby_PQ.new(ARR)
+    original_length = pqueue.length
+
+
+    pqueue.peek
+    assert_equal(original_length, pqueue.length)
+  end
 end
